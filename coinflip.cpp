@@ -27,7 +27,7 @@ int WinMain(){
 }
 
 unsigned long long coinFlip(unsigned row){
-    unsigned long long tries = 0;
+    unsigned long long tries = 1;
     unsigned count = 0;
     while (true){
         unsigned rng = rand() % 2;
