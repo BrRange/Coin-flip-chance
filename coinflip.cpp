@@ -11,7 +11,7 @@ int WinMain(){
     srand(time(NULL));
     double games = 0;
     unsigned inARow = 0;
-    double average = 0;
+    long double average = 0;
     std::cout << std::endl << "What streak you desire: ";
     std::cin >> inARow;
     std::cout << std::endl << "In how many games: ";
