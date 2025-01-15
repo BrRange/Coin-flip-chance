@@ -17,24 +17,34 @@ size_t coinFlip(unsigned row){
     }
 }
 
+union num{
+    size_t i;
+    double d;
+};
+
 int main(){
     std::cout << "Coin flip streak game\n";
+    num average;
 
     while (true){
     srand(time(0ull));
-    double games = 0.0;
+    unsigned games = 0u;
     unsigned inARow = 0u;
-    double average = 0.0;
+    average.i = 0ull;
     std::cout << '\n' << "What streak do you desire? ";
     std::cin >> inARow;
     std::cout << '\n' << "In how many games? ";
     std::cin >> games;
     if(!inARow || !games) return 0;
     std::cout << '\n';
-
-    for (unsigned i = 0; i < games; i++){
-        average += coinFlip(inARow) / games;
+    
+    if(games == 1){
+        average.i = coinFlip(inARow);
+        std::cout << average.i << " tries to get a " << inARow << " streak! A " << 100.0 / average.i << "% chance to get it!" << '\n';
+    } else {
+        for (unsigned i = 0; i < games; i++)
+            average.d += coinFlip(inARow) / static_cast<double>(games);
+        std::cout << "Average of " << average.d << " tries in " << games << " games, to get a " << inARow << " streak! A " << 100.0 / average.d << "% chance to get it!" << '\n';
     }
-    std::cout << "Average of " << average << " tries in " << games << " games, to get a " << inARow << " streak! A " << 100 / average << "% chance to get it!" << '\n';
     }
 }
